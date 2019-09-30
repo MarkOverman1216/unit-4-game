@@ -46,22 +46,23 @@ var game = {
     game.crystals.forEach((crystal, index) => {
       $("#crystal" + index).off('click');
       game.crystals[index] = (Math.round(Math.random() * 11) + 1);
-      console.log(game.crystals);
       $("#crystal" + index).on('click', function () {
         game.currentScore += game.crystals[index];
         $("#currentScore").text(game.currentScore);
         if (game.currentScore > game.numberToGuess) {
           game.losses++;
+          alert("You Lost... Better Luck Next Time!");
           $("#losses").text(game.losses);
           setTimeout(() => {
             game.resetGame();
-          }, 5000);
+          }, 2000);
         } else if (game.currentScore === game.numberToGuess) {
           game.wins++;
+          alert("You Won! Think you can do it again?");
           $("#wins").text(game.wins);
           setTimeout(() => {
             game.resetGame();
-          }, 5000);
+          }, 2000);
         }
       })
     });
